@@ -2,13 +2,14 @@ import requests
 
 
 class LoLAPITransport:
-    def __init__(self, api_key, region):
+    def __init__(self, api_key, platform_routing, region_routing):
         self.api_key = api_key
-        self.routing = self._get_routing(region)
+        self.platform_routing = self._get_platform_routing(platform_routing)
+        self.region_routing = self._get_region_routing(region_routing)
 
     @staticmethod
-    def _get_routing(region):
-        host = {
+    def _get_platform_routing(platform_routing):
+        hosts = {
             'BR1': 'https://br1.api.riotgames.com',
             'EUN1': 'https://eun1.api.riotgames.com',
             'EUW1': 'https://euw1.api.riotgames.com',
@@ -21,12 +22,30 @@ class LoLAPITransport:
             'TR1': 'https://tr1.api.riotgames.com',
             'RU': 'https://ru.api.riotgames.com',
         }
-        region_host = host.get(region)
+        host = hosts.get(platform_routing)
 
-        if region_host is None:
-            raise KeyError(f'{region} is not a valid region')
+        if host is None:
+            raise KeyError(f'{platform_routing} is not a valid Platform '
+                           'Routing Value\nFor details visit: '
+                           'https://developer.riotgames.com/docs/lol')
 
-        return region_host
+        return host
+
+    @staticmethod
+    def _get_region_routing(region_routing):
+        hosts = {
+            'AMERICAS': 'https://americas.api.riotgames.com',
+            'ASIA': 'https://asia.api.riotgames.com',
+            'EUROPE': 'https://europe.api.riotgames.com',
+        }
+        host = hosts.get(region_routing)
+
+        if host is None:
+            raise KeyError(f'{region_routing} is not a valid Region '
+                           'Routing Value\nFor details visit: '
+                           'https://developer.riotgames.com/docs/lol')
+
+        return host
 
     @staticmethod
     def request(url, method, headers, params=None, body=None):
@@ -41,7 +60,7 @@ class LoLAPITransport:
             'Accept': 'application/json'
         }
 
-    def get(self, url, params):
+    def get(self, url, params={}):
         headers = self._headers_default_receive_json()
         return self.request(url, HTTPMethod.GET, headers, params)
 
