@@ -11,5 +11,5 @@ class LoLSummonerClient(LolApiClient):
 
     def ids(self, summoner_name):
         path = f'/lol/summoner/{self.v}/summoners/by-name/{summoner_name}'
-        return self._get(path=path, obj_desc=self.obj_desc,
-                         route_type='platform')
+        return self._get(
+            path=path, obj_desc=self.obj_desc, route_type='platform')
