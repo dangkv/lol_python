@@ -11,11 +11,15 @@ class LolApiClient:
             host = self.transport.platform_routing
         elif route_type == 'region':
             host = self.transport.region_routing
+        elif route_type == 'data_dragon':
+            host = self.transport.data_dragon
         else:
-            raise Exception(f'Error retrieving {obj_desc}: Invalid Route Type')
+            raise ValueError(
+                f'Error retrieving {obj_desc}: Invalid Route Type {route_type}')
 
         uri = host + path
         response = self.transport.get(url=uri, params=kwargs)
+
         if response.status_code == requests.codes.OK:
             return response.json()
         else:

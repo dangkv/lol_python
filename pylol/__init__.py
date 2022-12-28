@@ -1,6 +1,9 @@
-from pylol.transport import LoLAPITransport
-from pylol.summoner_client import LoLSummonerClient
+from pylol.data_dragon_client import DataDragonClient
 from pylol.match_client import LoLMatchClient
+from pylol.summoner_client import LoLSummonerClient
+from pylol.transport import LoLAPITransport
+
+
 
 
 class PyLoL:
@@ -17,4 +20,4 @@ class PyLoL:
         )
         self.summoner = LoLSummonerClient(self._transport)
         self.match = LoLMatchClient(self._transport)
-
+        self.data_dragon = DataDragonClient(self._transport)

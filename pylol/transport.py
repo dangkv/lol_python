@@ -4,11 +4,12 @@ import requests
 class LoLAPITransport:
     def __init__(self, api_key, platform_routing, region_routing):
         self.api_key = api_key
-        self.platform_routing = self._get_platform_routing(platform_routing)
-        self.region_routing = self._get_region_routing(region_routing)
+        self.platform_routing = self._get_platform_host(platform_routing)
+        self.region_routing = self._get_region_host(region_routing)
+        self.data_dragon = self._get_data_dragon_host()
 
     @staticmethod
-    def _get_platform_routing(platform_routing):
+    def _get_platform_host(platform_routing):
         hosts = {
             'BR1': 'https://br1.api.riotgames.com',
             'EUN1': 'https://eun1.api.riotgames.com',
@@ -32,7 +33,7 @@ class LoLAPITransport:
         return host
 
     @staticmethod
-    def _get_region_routing(region_routing):
+    def _get_region_host(region_routing):
         hosts = {
             'AMERICAS': 'https://americas.api.riotgames.com',
             'ASIA': 'https://asia.api.riotgames.com',
@@ -48,11 +49,15 @@ class LoLAPITransport:
         return host
 
     @staticmethod
+    def _get_data_dragon_host():
+        return 'https://ddragon.leagueoflegends.com'
+
+    @staticmethod
     def request(url, method, headers, params=None, body=None):
         request_args = {'method': method, 'url': url, 'headers': headers,
                         'params': params, 'data': body}
         return requests.request(**request_args)
-    
+
     def _headers_default_receive_json(self):
         return {
             'Origin': 'https://developer.riotgames.com',
