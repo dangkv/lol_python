@@ -1,5 +1,5 @@
-from pylol.lol_api_client import LolApiClient
-from pylol.lol_api_version import LolApiVersion
+from lol_python.lol_api_client import LolApiClient
+from lol_python.lol_api_version import LolApiVersion
 
 
 class LoLMatchClient(LolApiClient):

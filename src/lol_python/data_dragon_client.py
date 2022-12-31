@@ -1,4 +1,5 @@
-from pylol.lol_api_client import LolApiClient
+from lol_python.lol_api_client import LolApiClient
+
 
 class DataDragonClient(LolApiClient):
 

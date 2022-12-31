@@ -1,12 +1,10 @@
-from pylol.data_dragon_client import DataDragonClient
-from pylol.match_client import LoLMatchClient
-from pylol.summoner_client import LoLSummonerClient
-from pylol.transport import LoLAPITransport
+from lol_python.data_dragon_client import DataDragonClient
+from lol_python.match_client import LoLMatchClient
+from lol_python.summoner_client import LoLSummonerClient
+from lol_python.transport import LoLAPITransport
 
 
-
-
-class PyLoL:
+class lol_python:
     def __init__(
             self,
             api_key,

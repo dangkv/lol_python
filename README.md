@@ -1,30 +1,31 @@
-# PyLoL - League of Legends Python SDK
-[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://www.opensource.org/licenses/MIT)
+# lol_python - League of Legends Python API WRAPPER
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-A Python client library to use the Riot LoL API
+A Python API Wrapper for Riot League of Legends API Endpoints.
 
 More Endpoints coming soon... :metal:
 
 # :dart: Getting Started
 1. Create a Riot development API key [here](https://developer.riotgames.com/)
-2. Import PyLoL into your script
-3. Initialize the PyLoL class using the API key in step 1
-4. Enjoy.  
+2. Import lol_python into your script
+3. Initialize the lol_python class using the API key in step 1
+4. Enjoy.
 
 # :spiral_notepad: Example
+
 ```python
-from pylol import PyLoL
+from lol_python import lol_python
 
 api_key = 'RIOT_API_KEY'
 
-# Instantiate PyLoL class 
-lol = PyLoL(api_key=api_key)
+# Instantiate lol_python class
+lol = lol_python(api_key=api_key)
 
 # Get IDs using Summoner Name
-ids = lol.summoner.ids('Your Summoner Name')
+ids = lol.summoner.ids('Summoner Name')
 
 # Get list of match IDs
-match_list = lol.match.list('Your Summoner Name')
+match_list = lol.match.list('Summoner PUUID')
 
 # Get Match summary
 match_summary = lol.match.summary('Match ID')
@@ -32,11 +33,6 @@ match_summary = lol.match.summary('Match ID')
 # Get detailed match events
 match_timeline = lol.match.timeline('Match ID')
 ```
-
-# :key: Dimensional Key
-|Dimension|Type|Link|
-|---|---|---|
-|Champions | JSON |[Version 11.9.1](http://ddragon.leagueoflegends.com/cdn/11.9.1/data/en_US/champion.json) |
 
 # :-1: Rate Limits
 - 20 requests every 1 seconds(s)
